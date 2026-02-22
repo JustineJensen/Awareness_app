@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "29397982630",
+    "project_id": "securityawereness",
+    "storage_bucket": "securityawereness.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29397982630:android:eadf42578d0d20860e4367",
+        "android_client_info": {
+          "package_name": "com.example.security_awareness_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "29397982630-pufd6g26bulrne588i7kc5q215vu7rml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXH6zOE7ah-gFNV5E15oWuX8vMtfUK-qk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "29397982630-pufd6g26bulrne588i7kc5q215vu7rml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
