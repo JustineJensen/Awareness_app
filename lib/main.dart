@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:security_awareness_app/auth/auth_block.dart';
+import 'package:security_awareness_app/views/landing_screen.dart';
 import 'package:security_awareness_app/views/login_screen.dart';
 import 'package:security_awareness_app/views/home_screen.dart';
 import 'package:security_awareness_app/views/register_screen.dart';
 import 'firebase_options.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,22 +20,23 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-    
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'CloudZen'),
-      routes:{
-          '/': (_) => const LoginScreen(),
+    return BlocProvider(
+      create: (_) => AuthBloc()..add(AuthSubscribe()),
+      child: MaterialApp(
+        title: 'CloudZen',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        ),
+        initialRoute: '/',
+        routes: {
+          '/': (_)=> const LandingScreen(),
+          '/login': (_) => const LoginScreen(),
           '/home': (_) => const HomeScreen(),
-           '/register': (_) => const RegisterScreen(),
-  },
-      
+          '/register': (_) => const RegisterScreen(),
+        },
+      ),
     );
   }
 }
