@@ -4,6 +4,7 @@ import 'package:security_awareness_app/auth/auth_block.dart';
 import 'package:security_awareness_app/views/landing_screen.dart';
 import 'package:security_awareness_app/views/login_screen.dart';
 import 'package:security_awareness_app/views/home_screen.dart';
+import 'package:security_awareness_app/views/module_screen.dart';
 import 'package:security_awareness_app/views/register_screen.dart';
 import 'firebase_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
           '/login': (_) => const LoginScreen(),
           '/home': (_) => const HomeScreen(),
           '/register': (_) => const RegisterScreen(),
+          '/modules': (_) => const  ModulesScreen(),
         },
       ),
     );

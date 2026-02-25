@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         }
         if (state is AuthSuccess) {
-          Navigator.pushReplacementNamed(context, '/home');
+          Navigator.pushReplacementNamed(context, '/modules');
         }
       },
       child: Scaffold(

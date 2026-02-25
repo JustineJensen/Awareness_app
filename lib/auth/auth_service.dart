@@ -28,7 +28,7 @@ class AuthService {
       context.read<AuthBloc>().add(AuthSubscribe());
 
       // Optional: go straight to home after signup
-      Navigator.pushNamedAndRemoveUntil(context, '/home', (_) => false);
+      Navigator.pushNamedAndRemoveUntil(context, '/modules', (_) => false);
     } on FirebaseAuthException catch (e) {
       String message = 'Signup failed.';
       if (e.code == 'weak-password') {
@@ -68,7 +68,7 @@ class AuthService {
       );
 
       if (!context.mounted) return;
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/modules');
     } on FirebaseAuthException catch (e) {
       String message = 'Login failed.';
       if (e.code == 'user-not-found') {
