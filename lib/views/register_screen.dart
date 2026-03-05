@@ -85,7 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             );
           }
           if (state is AuthSuccess) {
-            Navigator.pushNamedAndRemoveUntil(context, '/home', (_) => false);
+            Navigator.pushNamedAndRemoveUntil(context, '/login', (_) => false);
           }
         },
 
@@ -96,7 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             elevation: 0,
             leading: IconButton(icon: const Icon(Icons.arrow_back),onPressed:()=> Navigator.pop(context),),
           
-            title: const Text('Register', style:TextStyle(fontWeight: FontWeight.w700),),),
+            title: const Text('', style:TextStyle(fontWeight: FontWeight.w700),),),
         
           body: SafeArea(
           child: Center(
@@ -213,13 +213,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       style: TextStyle(fontWeight: FontWeight.w700),
                                     ),
                                     const SizedBox(height: 4),
-                                    Text(
-                                      "We'll only store your learning progress locally. Your data is yours.",
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.grey.shade700,
-                                      ),
-                                    ),
+                              
                                   ],
                                 ),
                               ),
@@ -288,13 +282,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(height: 10),
 
                       Center(
-                        child: TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: Text(
-                            'Back to login',
-                            style: TextStyle(color: Colors.deepPurple.shade400),
-                          ),
-                        ),
+                        child:Row(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('Already have an account? '),
+                            TextButton( 
+                              onPressed: () => Navigator.pop(context),
+                              child: Text(
+                                'Sign In',
+                                style: TextStyle(color: Colors.deepPurple.shade400),
+                              ),
+                            ),
+                        ],
+                      ),
                       ),
                     ],
                   ),

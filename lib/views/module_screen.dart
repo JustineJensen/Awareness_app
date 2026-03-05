@@ -1,31 +1,17 @@
 import 'package:flutter/material.dart';
 
-class ModulesScreen extends StatefulWidget {
+class ModulesScreen extends StatelessWidget {
   const ModulesScreen({super.key});
-
-  @override
-  State<ModulesScreen> createState() => _ModulesScreenState();
-}
-
-class _ModulesScreenState extends State<ModulesScreen> {
-  final List<String> categories = const [
-    'Information Security',
-    'Cybersecurity Fundamentals',
-    'AI Awareness',
-    'Ethics & Legal',
-  ];
-
-  String selectedCategory = 'Information Security';
 
   String _routeForCategory(String category) {
     switch (category) {
-      case 'Information Security':
+      case 'Protecting Your Personal Information':
         return '/modules/infosec';
-      case 'Cybersecurity Fundamentals':
+      case 'Staying Safe Online':
         return '/modules/cyber';
-      case 'AI Awareness':
+      case 'Understanding AI Risks':
         return '/modules/ai';
-      case 'Ethics & Legal':
+      case 'Your Rights & Responsibilities Online':
         return '/modules/ethics';
       default:
         return '/modules';
@@ -34,44 +20,132 @@ class _ModulesScreenState extends State<ModulesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cards = const <_SimpleCardData>[
+      _SimpleCardData(
+        title: 'Protecting Your Personal Information',
+        subtitle: 'Learn how to protect passwords, emails and personal data.',
+      ),
+      _SimpleCardData(
+        title: 'Staying Safe Online',
+        subtitle: 'Recognize phishing, scams and dangerous websites.',
+      ),
+      _SimpleCardData(
+        title: 'Understanding AI Risks',
+        subtitle: 'Learn about deepfakes, AI scams and misinformation.',
+      ),
+      _SimpleCardData(
+        title: 'Your Rights & Responsibilities Online',
+        subtitle: 'Understand privacy, ethics and legal issues online.',
+      ),
+    ];
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Learning Modules')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Choose a category',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 10),
-
-            DropdownButtonFormField<String>(
-              value: selectedCategory,
-              items: categories
-                  .map((c) => DropdownMenuItem(value: c, child: Text(c)))
-                  .toList(),
-              onChanged: (value) {
-                if (value == null) return;
-                setState(() => selectedCategory = value);
-              },
-              decoration: const InputDecoration(border: OutlineInputBorder()),
-            ),
-
-            const SizedBox(height: 20),
-
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  final route = _routeForCategory(selectedCategory);
+      backgroundColor: const Color(0xFFF7FAFF),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        title: const Text(
+          'Learning Path',
+          style: TextStyle(fontWeight: FontWeight.w800),
+        ),
+      ),
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 900),
+          child: ListView.separated(
+            padding: const EdgeInsets.all(18),
+            itemCount: cards.length,
+            separatorBuilder: (_, __) => const SizedBox(height: 12),
+            itemBuilder: (context, i) {
+              final item = cards[i];
+              return _SimpleCategoryCard(
+                title: item.title,
+                subtitle: item.subtitle,
+                onTap: () {
+                  final route = _routeForCategory(item.title);
                   Navigator.pushNamed(context, route);
                 },
-                child: const Text('Continue'),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SimpleCardData {
+  final String title;
+  final String subtitle;
+
+  const _SimpleCardData({
+    required this.title,
+    required this.subtitle,
+  });
+}
+
+class _SimpleCategoryCard extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  const _SimpleCategoryCard({
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(14),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(14),
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: const Color(0xFFE6ECFF)),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 14.5,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle,
+                      style: TextStyle(
+                        color: Colors.grey.shade700,
+                        fontSize: 12.5,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              const SizedBox(width: 12),
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF2F5FF),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: const Color(0xFFE6ECFF)),
+                ),
+                child: const Icon(Icons.copy_all_outlined, size: 18),
+              ),
+            ],
+          ),
         ),
       ),
     );
