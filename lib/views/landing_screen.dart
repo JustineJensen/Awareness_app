@@ -29,9 +29,19 @@ class LandingScreen extends StatelessWidget {
                 'Welcome to CloudZen',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 40,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Text(
+                  'Learn. Practice. Secure.',
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 14,
+                  ),
                 ),
               ),
 
