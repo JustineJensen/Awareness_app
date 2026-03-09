@@ -9,7 +9,7 @@ import 'package:security_awareness_app/views/landing_screen.dart';
 import 'package:security_awareness_app/views/login_screen.dart';
 import 'package:security_awareness_app/views/register_screen.dart';
 import 'package:security_awareness_app/views/home_screen.dart';
-import 'package:security_awareness_app/views/module_screen.dart';
+import 'package:security_awareness_app/views/category_screen.dart';
 import 'package:security_awareness_app/views/information_sec_screen.dart';
 import 'package:security_awareness_app/views/phishing_lesson_screen.dart';
 import 'package:security_awareness_app/views/password_lesson_screen.dart';

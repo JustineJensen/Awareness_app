@@ -1,4 +1,6 @@
 import 'package:security_awareness_app/model/lesson_model.dart';
+import 'package:security_awareness_app/model/phishing_step_content.dart';
+import 'package:security_awareness_app/model/phishing_step_model.dart';
 
 class LessonController {
   LessonModel getPhishingLesson1() {
@@ -115,6 +117,13 @@ class LessonController {
       default:
         throw Exception('Lesson not found for moduleId: $moduleId');
     }
+  }
+  PhishingStepModel getPhishingStep(int stepIndex) {
+    return PhishingSteps.steps[stepIndex];
+  }
+
+  int getPhishingStepsCount() {
+    return PhishingSteps.steps.length;
   }
 
 }
