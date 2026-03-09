@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:security_awareness_app/model/module_model.dart';
+import 'package:security_awareness_app/model/learning_path_model.dart';
 import '../repositories/progress_repository.dart';
 
 class ModulesScreen extends StatefulWidget {
@@ -13,30 +13,29 @@ class ModulesScreen extends StatefulWidget {
 class _ModulesScreenState extends State<ModulesScreen> {
   final _progressRepo = ProgressRepository();
 
-
-  final List<ModuleModel> _modules = const [
-    ModuleModel(
+  final List<LearningPathModel> _modules = const [
+    LearningPathModel(
       id: 'infosec',
       title: 'Protecting Your Personal Information',
       subtitle: 'Learn how to protect passwords, emails and personal data.',
       modules: 4,
       route: '/modules/infosec',
     ),
-    ModuleModel(
+    LearningPathModel(
       id: 'cyber',
       title: 'Staying Safe Online',
       subtitle: 'Recognize phishing, scams and dangerous websites.',
       modules: 6,
       route: '/modules/cyber',
     ),
-    ModuleModel(
+    LearningPathModel(
       id: 'ai',
       title: 'Understanding AI Risks',
       subtitle: 'Learn about deepfakes, AI scams and misinformation.',
       modules: 5,
       route: '/modules/ai',
     ),
-    ModuleModel(
+    LearningPathModel(
       id: 'ethics',
       title: 'Your Rights & Responsibilities Online',
       subtitle: 'Understand privacy, ethics and legal issues online.',
@@ -125,7 +124,6 @@ class _ModulesScreenState extends State<ModulesScreen> {
                     modules: item.modules,
                     onTap: () async {
                       await Navigator.pushNamed(context, item.route);
-                      // refresh when coming back (so progress updates)
                       await _refresh();
                     },
                   );
@@ -199,14 +197,20 @@ class _SimpleCategoryCard extends StatelessWidget {
                         const SizedBox(width: 6),
                         Text(
                           '$modules modules',
-                          style: TextStyle(color: Colors.grey.shade700, fontSize: 12),
+                          style: TextStyle(
+                            color: Colors.grey.shade700,
+                            fontSize: 12,
+                          ),
                         ),
                         const SizedBox(width: 14),
                         const Icon(Icons.circle, size: 8, color: Colors.green),
                         const SizedBox(width: 6),
                         Text(
                           '$pct% complete',
-                          style: TextStyle(color: Colors.grey.shade700, fontSize: 12),
+                          style: TextStyle(
+                            color: Colors.grey.shade700,
+                            fontSize: 12,
+                          ),
                         ),
                       ],
                     ),
